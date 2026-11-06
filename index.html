@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>معلومات ماشین‌ها | 3D</title>
+  <title>گالری سه‌بعدی ماشین‌ها</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -17,6 +17,8 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
     }
+
+    /* پنل اطلاعات */
     .info-panel {
       position: fixed;
       top: 30px;
@@ -26,11 +28,11 @@
       padding: 24px 28px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.1);
-      max-width: 300px;
+      max-width: 320px;
       z-index: 10;
     }
     .info-panel h1 {
-      font-size: 22px;
+      font-size: 20px;
       margin-bottom: 12px;
       color: #4fc3f7;
     }
@@ -39,36 +41,108 @@
       line-height: 1.9;
       color: #ccc;
     }
-    .info-panel span {
-      color: #fff;
-      font-weight: bold;
+    .info-panel span { color: #fff; font-weight: bold; }
+
+    /* دکمه‌های رنگ */
+    .colors {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
     }
-    .hint {
+    .color-btn {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .color-btn:hover {
+      transform: scale(1.15);
+      border-color: #fff;
+    }
+
+    /* گالری پایین */
+    .gallery {
       position: fixed;
-      bottom: 20px;
+      bottom: 24px;
       left: 50%;
       transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+      background: rgba(20, 20, 35, 0.85);
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+    }
+    .gallery button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .gallery button:hover {
+      background: rgba(79,195,247,0.2);
+      border-color: #4fc3f7;
+    }
+    .gallery button.active {
+      background: #4fc3f7;
+      color: #0f0f1a;
+      border-color: #4fc3f7;
+      font-weight: bold;
+    }
+
+    .hint {
+      position: fixed;
+      top: 30px;
+      left: 30px;
       font-size: 13px;
       color: #888;
       z-index: 10;
+      max-width: 220px;
+      line-height: 1.8;
     }
   </style>
 </head>
 <body>
   <div id="canvas-container"></div>
 
+  <div class="hint">
+    🖱️ با ماوس بچرخانید<br />
+    🔍 با اسکرول زوم کنید<br />
+    🎨 روی رنگ‌ها کلیک کنید
+  </div>
+
   <div class="info-panel">
-    <h1>🏎️ ماشین اسپرت</h1>
-    <p>
+    <h1 id="car-name">🏎️ ماشین اسپرت</h1>
+    <p id="car-specs">
       موتور: <span>V8 Twin-Turbo</span><br />
       قدرت: <span>650 اسب بخار</span><br />
       سرعت نهایی: <span>320 km/h</span><br />
       شتاب 0-100: <span>3.2 ثانیه</span><br />
       وزن: <span>1450 کیلوگرم</span>
     </p>
+
+    <div class="colors">
+      <button class="color-btn" data-color="0xe63946" style="background:#e63946"></button>
+      <button class="color-btn" data-color="0x4fc3f7" style="background:#4fc3f7"></button>
+      <button class="color-btn" data-color="0xffd166" style="background:#ffd166"></button>
+      <button class="color-btn" data-color="0x06d6a0" style="background:#06d6a0"></button>
+      <button class="color-btn" data-color="0x9b5de5" style="background:#9b5de5"></button>
+    </div>
   </div>
 
-  <div class="hint">با ماوس بچرخانید • با اسکرول زوم کنید</div>
+  <div class="gallery">
+    <button data-car="sport" class="active">اسپرت</button>
+    <button data-car="suv">شاسی‌بلند</button>
+    <button data-car="truck">کامیون</button>
+  </div>
 
   <script type="importmap">
     {
