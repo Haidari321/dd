@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>معلومات ماشین‌ها | 3D</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Tahoma, sans-serif;
+      background: #0f0f1a;
+      color: #fff;
+      overflow: hidden;
+    }
+    #canvas-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    .info-panel {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: rgba(20, 20, 35, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 24px 28px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      max-width: 300px;
+      z-index: 10;
+    }
+    .info-panel h1 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: #4fc3f7;
+    }
+    .info-panel p {
+      font-size: 14px;
+      line-height: 1.9;
+      color: #ccc;
+    }
+    .info-panel span {
+      color: #fff;
+      font-weight: bold;
+    }
+    .hint {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 13px;
+      color: #888;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <div class="info-panel">
+    <h1>🏎️ ماشین اسپرت</h1>
+    <p>
+      موتور: <span>V8 Twin-Turbo</span><br />
+      قدرت: <span>650 اسب بخار</span><br />
+      سرعت نهایی: <span>320 km/h</span><br />
+      شتاب 0-100: <span>3.2 ثانیه</span><br />
+      وزن: <span>1450 کیلوگرم</span>
+    </p>
+  </div>
+
+  <div class="hint">با ماوس بچرخانید • با اسکرول زوم کنید</div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
